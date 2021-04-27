@@ -1,0 +1,76 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+    <title>Hello, world!</title>
+  </head>
+  <body>
+    <div class="container">
+        <nav class="navbar-expand-lg navbar-light bg-light">     
+            <a class="navbar-brand d-flex justify-content-center">Courier Parcel Delivery Software</a> 
+        </nav>
+        <div class="row">
+            <div class="col-md-6">
+                <form action="" method="post">
+                {% csrf_token %}
+                {% for f in form  %}
+                    <div class=" form-group">
+                    {{f.label_tag}}{{f}}<small class="text-danger">{{f.errors|striptags}}</small>
+                    </div>
+                {% endfor %}
+                <div>
+                    <button type="submit" class="btn btn-primary mb-3">Submit</button>
+                </div>
+             </form>
+             {%if messages %}
+                {% for message in messages %}
+                    <div {% if message.tags %} class="alert alert-{{ message.tags }}" {% endif %}>
+                        {{message}}
+                    </div>
+                {% endfor %} 
+            {% endif %}
+            </div>
+            <div class="col-md-6">
+                <table class="table">
+                    <thead>
+                      <tr>
+                        <th scope="col">#</th>
+                        <th scope="col">Name</th>
+                        <th scope="col">Type</th>
+                        <th scope="col">Order Place</th>
+                        <th scope="col">Weight</th>
+                        <th scope="col">Cost</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                    {% for s in show %}
+                      <tr>
+                        <th scope="row">{{s.id}}</th>
+                        <td>{{s.merchant_name}}</td>
+                        <td>{{s.percel_type}}</td>
+                        <td>{{s.order_place}}</td>
+                        <td>{{s.weight}}</td>
+                        <!-- <td>{{s.get_order_place_display}}</td>
+                        <td>{{s.get_weight_display}}</td> -->
+                        <td>{{s.showcost}}</td>
+                      </tr>
+                     {% endfor %}
+                     
+                    </tbody>
+                  </table>
+            </div>
+        </div>
+    </div>
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+  </body>
+</html>
